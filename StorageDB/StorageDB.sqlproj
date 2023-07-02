@@ -78,7 +78,6 @@
     <Build Include="StoredProcedures\DeleteAll.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="StorageDB.publish.xml" />
     <None Include="Query\GetAll.sql" />
   </ItemGroup>
 </Project>
