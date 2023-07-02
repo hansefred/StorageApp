@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Storage]
+(
+	[Id] UNIQUEIDENTIFIER  NOT NULL PRIMARY KEY,
+	[StorageName] VARCHAR(50),
+	
+)
