@@ -1,10 +1,8 @@
-﻿using Domain.DomainModels;
-
-namespace Infrastructure.Interfaces
+﻿namespace Domain.DomainModels.Interfaces
 {
     public interface IStorageRepository
     {
-        Task CreateStorage(Storage storage);
+        Task<Storage> CreateStorage(Storage storage);
         Task DeleteStorage(Guid ID);
         Task<IEnumerable<Storage>> GetAll();
         Task<Storage?> GetStoragebyID(Guid ID);

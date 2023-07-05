@@ -11,7 +11,9 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "StorageDB", "StorageDB\Stor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Tests", "DataAccessTest\Infrastructure.Tests.csproj", "{A1E14968-4228-4220-B847-9E0E99703725}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{AFBD5BCA-464A-4751-A6BC-344C73310100}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{AFBD5BCA-464A-4751-A6BC-344C73310100}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{E905D307-29BF-4873-8512-5C72BA29A92F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{AFBD5BCA-464A-4751-A6BC-344C73310100}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFBD5BCA-464A-4751-A6BC-344C73310100}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFBD5BCA-464A-4751-A6BC-344C73310100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E905D307-29BF-4873-8512-5C72BA29A92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E905D307-29BF-4873-8512-5C72BA29A92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E905D307-29BF-4873-8512-5C72BA29A92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E905D307-29BF-4873-8512-5C72BA29A92F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

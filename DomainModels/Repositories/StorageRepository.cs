@@ -2,9 +2,10 @@
 using System.Data;
 using Dapper;
 using Domain.DomainModels;
-using Infrastructure.Interfaces;
 using Infrastructure.Exceptions;
 using Infrastructure.Factories;
+using Domain.DomainModels.Interfaces;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories
 {
@@ -98,16 +99,27 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public async Task CreateStorage(Storage storage)
+        public async Task<Storage> CreateStorage(Storage storage)
         {
             try
             {
                 using (var dbConnection = _sqlConnectionFactory.GetSqlConnection())
                 {
 
-                    var rows = await dbConnection.ExecuteAsync("[dbo].[sp_CreateStorage]", new { Name = storage.StorageName }, commandType: CommandType.StoredProcedure); ;
-                    if (rows < 1)
+                    var rows = await dbConnection.QueryAsync<Guid>("[dbo].[sp_CreateStorage]", new { Name = storage.StorageName }, commandType: CommandType.StoredProcedure); ;
+
+                    var id = Guid.Empty;
+                    try
                     {
+                        id = rows.First();
+
+                        var s =  await GetStoragebyID(id);
+                        return s!;
+
+                    }
+                    catch
+                    { 
+                      
                         throw new CreateStorageException("No Row affected");
                     }
                 }

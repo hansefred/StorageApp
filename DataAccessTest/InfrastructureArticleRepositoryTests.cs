@@ -6,8 +6,8 @@ using Xunit.Abstractions;
 using Serilog.Extensions.Logging;
 using Domain.DomainModels;
 using Infrastructure.Repositories;
-using Infrastructure.Interfaces;
 using Infrastructure.Tests.Helper;
+using Domain.DomainModels.Interfaces;
 
 namespace Infrastructure.Tests
 {

@@ -1,5 +1,4 @@
 ﻿using Domain.DomainModels;
-using Infrastructure.Interfaces;
 using Infrastructure.Repositories;
 using Infrastructure.Tests.Helper;
 using Serilog.Extensions.Logging;
@@ -8,6 +7,7 @@ using Xunit.Abstractions;
 using Xunit.Sdk;
 using DotNet.Testcontainers.Containers;
 using Microsoft.Extensions.Logging;
+using Domain.DomainModels.Interfaces;
 
 namespace Infrastructure.Tests
 {
@@ -55,11 +55,12 @@ namespace Infrastructure.Tests
 
 
             //Act
-            await _refStorageRepository.CreateStorage(_dummyStorage);
-            var queryStorages = await _refStorageRepository.GetAll();
+            var queryStorages= await _refStorageRepository.CreateStorage(_dummyStorage);
+
 
             //Assert 
-            Assert.Single(queryStorages);
+            Assert.NotNull(queryStorages);
+            Assert.Equal(queryStorages.StorageName, StorageName);
 
         }
 
@@ -89,17 +90,16 @@ namespace Infrastructure.Tests
 
 
             //Act
-            await _refStorageRepository.CreateStorage(_dummyStorage);
-            var queryStorage = await _refStorageRepository.GetAll();
-            queryStorage.First().StorageName = ChangedStorageName;
+            var storage = await _refStorageRepository.CreateStorage(_dummyStorage);
+            storage.StorageName = ChangedStorageName;
 
-            await _refStorageRepository.UpdateStorage(queryStorage.First());
-            queryStorage = await _refStorageRepository.GetAll();
+            await _refStorageRepository.UpdateStorage(storage);
+            var queryStorage = await _refStorageRepository.GetStoragebyID(storage.ID);
 
 
             //Assert
-            Assert.Single(queryStorage);
-            Assert.Equal(queryStorage.First().StorageName, ChangedStorageName);
+            Assert.NotNull(queryStorage);
+            Assert.Equal(queryStorage.StorageName, ChangedStorageName);
 
 
         }
@@ -115,10 +115,9 @@ namespace Infrastructure.Tests
 
 
             //Act
-            await _refStorageRepository.CreateStorage(_dummyStorage);
+            var storage = await _refStorageRepository.CreateStorage(_dummyStorage);
+            await _refStorageRepository.DeleteStorage(storage.ID);
             var queryStorage = await _refStorageRepository.GetAll();
-            await _refStorageRepository.DeleteStorage(queryStorage.First().ID);
-            queryStorage = await _refStorageRepository.GetAll();
 
 
             //Assert
@@ -136,10 +135,9 @@ namespace Infrastructure.Tests
 
 
             //Act
-            await _refStorageRepository.CreateStorage(_dummyStorage);
-            var queryStorage = await _refStorageRepository.GetAll();
+            var storage = await _refStorageRepository.CreateStorage(_dummyStorage);
           
-            var querybyID = await _refStorageRepository.GetStoragebyID(queryStorage.First().ID);
+            var querybyID = await _refStorageRepository.GetStoragebyID(storage.ID);
             
             //Assert 
             Assert.NotNull(querybyID);

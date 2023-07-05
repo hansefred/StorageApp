@@ -2,10 +2,9 @@
 using System.Data;
 using Microsoft.Extensions.Logging;
 using Domain.DomainModels;
-using Infrastructure.Interfaces;
 using Infrastructure.Exceptions;
 using Infrastructure.Factories;
-using System.Data.Common;
+using Domain.DomainModels.Interfaces;
 
 namespace Infrastructure.Repositories
 {

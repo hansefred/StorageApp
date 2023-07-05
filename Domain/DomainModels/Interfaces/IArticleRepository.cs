@@ -1,6 +1,4 @@
-﻿using Domain.DomainModels;
-
-namespace Infrastructure.Interfaces
+﻿namespace Domain.DomainModels.Interfaces
 {
     public interface IArticleRepository
     {
